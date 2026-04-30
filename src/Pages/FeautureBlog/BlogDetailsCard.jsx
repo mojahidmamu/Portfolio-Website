@@ -63,9 +63,38 @@ const BlogDetailsCard = () => {
 )}
 
       {/* Content */}
-      <article className="prose prose-lg max-w-none text-gray-700 mt-8 font-semibold mb-14">
+      <article className="prose prose-lg max-w-none text-gray-700 mt-8 font-semibold mb-4">
         <p><span className="font-bold  underline text-xl">Description:</span> {blog.content ?? blog.excerpt}</p>
       </article>
+
+
+      {blog.tags && (
+    <div className="flex gap-2 flex-wrap mt-4">
+      {blog.tags.map((tag, index) => (
+        <span
+          key={index}
+          className="px-3 py-1 text-sm bg-gray-200 rounded-full"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  )}
+
+
+    {/* Links */}
+        {blog.links?.profile && (
+          <div className="mt-4">
+            <a
+              href={blog.links.profile}
+              target="_blank"
+              rel="noreferrer"
+              className="text-indigo-600 font-semibold hover:underline"
+            >
+              🔗 Visit Profile
+            </a>
+          </div>
+        )}
     </main>
   );
 };

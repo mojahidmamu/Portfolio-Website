@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import BannerSection from "../Banner/BannerSection"; 
+// import BannerSection from "../Banner/BannerSection"; 
 import BlogCard from "./BlogCard";
 
 const Blog = () => {
@@ -9,7 +9,7 @@ const Blog = () => {
       <Helmet>
         <title>My Portfolio | Blog</title>
       </Helmet>
-      <BannerSection></BannerSection>
+      {/* <BannerSection></BannerSection> */}
       <BlogCard></BlogCard>
     </div>
   );
