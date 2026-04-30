@@ -64,6 +64,19 @@ const skills = [
   { name: "Vercel", icon: <SiVercel className="text-black w-12 h-12" /> },
 ];
 
+const cpProfiles = [
+  {
+    name: "Codeforces (Pupil)",
+    link: "https://codeforces.com/profile/Abdullah_all_Mojahid",
+    color: "text-blue-500",
+  },
+  {
+    name: "CodeChef (2★)",
+    link: "https://www.codechef.com/users/mojahidmamu",
+    color: "text-yellow-500",
+  },
+];
+
 const MySkill = () => {
   return (
     <div className="py-20 px-6 md:px-12 lg:px-20 bg-gray-50 dark:bg-gray-900 min-h-screen">
@@ -103,6 +116,28 @@ const MySkill = () => {
             </span>
           </div>
         ))}
+      </div>
+
+
+      {/* Competitive Programming Section */}
+      <div className="max-w-4xl mx-auto mt-20 text-center">
+        <h3 className="text-3xl font-bold mb-6">🏆 Competitive Programming</h3>
+
+        <div className="flex flex-wrap justify-center gap-6">
+          {cpProfiles.map((profile, index) => (
+            <a
+              key={index}
+              href={profile.link}
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-4 rounded-xl bg-white dark:bg-gray-800 shadow hover:shadow-lg transition transform hover:-translate-y-1"
+            >
+              <span className={`font-semibold ${profile.color}`}>
+                {profile.name}
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   );
