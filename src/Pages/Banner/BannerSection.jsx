@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import Profile from "../../assets/home/Profile-image.jpg";
+import Profile from "../../assets/home/profile.jpeg";
 
 import {
   SiCss3,
