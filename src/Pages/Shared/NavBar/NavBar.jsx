@@ -35,14 +35,14 @@ const NavBar = () => {
           About
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link
           to="/skill"
           className="hover:text-purple-400 transition-colors duration-200"
         >
          Skills
         </Link>
-      </li>
+      </li> */}
       <li>
         <Link
           to="/projects"
@@ -51,12 +51,20 @@ const NavBar = () => {
           Projects
         </Link>
       </li>
-      <li>
+      {/* <li>
         <Link
           to="/education"
           className="hover:text-purple-400 transition-colors duration-200"
         >
           Education
+        </Link>
+      </li> */}
+       <li>
+        <Link
+          to="/blogs"
+          className="hover:text-purple-400 transition-colors duration-200"
+        >
+            Achivements
         </Link>
       </li>
       <li>
@@ -67,14 +75,7 @@ const NavBar = () => {
           Contact
         </Link>
       </li>
-      {/* <li>
-        <Link
-          to="/dashboard"
-          className="hover:text-purple-400 transition-colors duration-200"
-        >
-          Dashboard
-        </Link>
-      </li> */}
+     
     </>
   );
 
@@ -153,11 +154,11 @@ const NavBar = () => {
           >
             Register
           </Link> */}
-           <Link
-            to="/blogs"
+          <Link
+            to="/"
             className="btn btn-accent btn-active rounded-lg font-bold text-white hover:bg-purple-600"
           >
-           Blogs
+            Dashboard
           </Link>
         </div>
       </div>

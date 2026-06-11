@@ -11,6 +11,7 @@ import Blog from "../Pages/FeautureBlog/Blog";
 import BlogDetailsCard from "../Pages/FeautureBlog/BlogDetailsCard";
 import MySkill from "../Pages/MySkill/MySkill";
 import Education from "../Pages/Education/Education";
+import About from "../Pages/AboutMe/About";
 
 export const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ export const router = createBrowserRouter([
         },
         {
           path: '/about',
-          element: <AboutMe></AboutMe>,
+          element: <About></About>,
         },
         {
           path: '/skill', 

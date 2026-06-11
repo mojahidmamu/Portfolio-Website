@@ -36,7 +36,7 @@ const BlogDetailsCard = () => {
           className="rounded-full w-12 h-12 object-cover"
         />
         <div>
-          <p className="font-semibold">Abdullah all Mojahid ✔</p>
+          <p className="font-semibold">Abdullah all Mojahid </p>
           <p className="text-gray-500 text-sm">
             {blog.createdAt
               ? new Date(blog.createdAt).toLocaleDateString("en-US", {
@@ -91,7 +91,7 @@ const BlogDetailsCard = () => {
               rel="noreferrer"
               className="text-indigo-600 font-semibold hover:underline"
             >
-              🔗 Visit Profile
+              🔗 Visit My Profile
             </a>
           </div>
         )}
