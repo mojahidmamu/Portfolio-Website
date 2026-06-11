@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
           element: <Contact></Contact>,
         },
         {
-          path: "/adminRoute", 
+          path: `/${adminRoute}`,
           element: <AdminDashboard></AdminDashboard>,
         }
     ],
