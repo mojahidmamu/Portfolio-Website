@@ -59,14 +59,14 @@ const NavBar = () => {
           Education
         </Link>
       </li> */}
-       <li>
+       {/* <li>
         <Link
           to="/blogs"
           className="hover:text-purple-400 transition-colors duration-200"
         >
             Achivements
         </Link>
-      </li>
+      </li> */}
       <li>
         <Link
           to="/contact"
@@ -155,10 +155,10 @@ const NavBar = () => {
             Register
           </Link> */}
           <Link
-            to="/"
+            to="/blogs"
             className="btn btn-accent btn-active rounded-lg font-bold text-white hover:bg-purple-600"
           >
-            Dashboard
+            Achivements
           </Link>
         </div>
       </div>
