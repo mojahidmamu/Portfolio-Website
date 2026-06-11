@@ -3,15 +3,14 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Homes/Home/Home";
 import AboutMe from "../Pages/AboutMe/AboutMe";
 import Projects from "../Pages/Projects/Projects"; 
-import Contact from "../Pages/Contact/Contact";
-// import Dashboard from "../Layout/Dashboard";
-// import Register from "../Pages/Register/Register";
-// import Login from "../Pages/Login/Login";
+import Contact from "../Pages/Contact/Contact"; 
 import Blog from "../Pages/FeautureBlog/Blog";
 import BlogDetailsCard from "../Pages/FeautureBlog/BlogDetailsCard";
 import MySkill from "../Pages/MySkill/MySkill";
 import Education from "../Pages/Education/Education";
-import About from "../Pages/AboutMe/About";
+import About from "../Pages/AboutMe/About"; 
+import AdminDashboard from "../Dashboard/AdminDashboard";
+const adminRoute = import.meta.env.VITE_ADMIN_ROUTE;
 
 export const router = createBrowserRouter([
   {
@@ -50,18 +49,10 @@ export const router = createBrowserRouter([
           path: "/contact",
           element: <Contact></Contact>,
         },
-        // {
-        //   path: "/dashboard",
-        //   element: <Dashboard></Dashboard>,
-        // },
-        // {
-        //   path: "/register",
-        //   element: <Register></Register>,
-        // },
-        // {
-        //   path: '/login',
-        //   element: <Login></Login>,
-        // },
+        {
+          path: "/adminRoute", 
+          element: <AdminDashboard></AdminDashboard>,
+        }
     ],
   },
 ]);
