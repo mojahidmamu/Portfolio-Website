@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
-    "firebase": "^11.10.0",
     "framer-motion": "^12.29.2",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.563.0",
