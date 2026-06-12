@@ -58,33 +58,85 @@ const Contact = () => {
     subject: "",
     message: "",
   });
-  
+
+  const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
   
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("✅ Message Sent Successfully !");
 
-    console.log(formData);
+    setLoading(true);
+    setStatus({ type: "", message: "" });
 
-    // show success UI
-    setSent(true);
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-    // reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+      const data = await res.json();
 
-    // auto hide message after 4 sec
-    setTimeout(() => setSent(false), 4000);
-  };
+      if (data.success) {
+        console.log("✅ Submitted Data:", formData);
+
+        // Success Message
+        setStatus({
+          type: "success",
+          message: "Message sent successfully!",
+        });
+
+        // Success UI
+        setSent(true);
+
+        // Reset Form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+
+        // Auto Hide Success UI
+        setTimeout(() => {
+          setSent(false);
+
+          setStatus({
+            type: "",
+            message: "",
+          });
+        }, 4000);
+      } else {
+        setStatus({
+          type: "error",
+          message:
+            data.message ||
+            "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+
+      setStatus({
+        type: "error",
+        message:
+          "Network error. Please try again later.",
+      });
+    } finally {
+      setLoading(false);
+    }
+};
+
 
   return (
     <div className="min-h-screen py-20 px-6 md:px-12 lg:px-20 bg-gray-50 dark:bg-gray-900">
@@ -176,7 +228,7 @@ const Contact = () => {
             <input
               type="email"
               name="email"
-              placeholder="name@example.com"
+              placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
               required
@@ -210,10 +262,11 @@ const Contact = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold py-4 rounded-xl shadow-lg transition transform hover:scale-105"
+              disabled={loading}
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl shadow-lg transition"
             >
-              Send Message
-            </button>
+              {loading ? "Sending..." : "Send Me"}
+          </button>
           </form>
 
          {/* Success Message UI */}

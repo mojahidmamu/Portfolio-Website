@@ -7,6 +7,7 @@ const AdminDashboard = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [selectedMessage, setSelectedMessage] = useState(null);
 
   const API_BASE =  import.meta.env.VITE_API_URL;  
 
@@ -125,8 +126,8 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
+        <div className="flex justify-between items-center mb-6 mt-6">
+          <h1 className="text-3xl mt-12 font-bold text-gray-800 dark:text-white">
             Admin Dashboard – Messages
           </h1>
           <button
@@ -164,18 +165,96 @@ const AdminDashboard = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
                       {new Date(msg.createdAt).toLocaleString()}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      <button
-                        onClick={() => deleteMessage(msg._id)}
-                        className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
-                      >
-                        Delete
-                      </button>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm flex gap-3">
+                        <button
+                            onClick={() => setSelectedMessage(msg)}
+                            className="text-blue-600 hover:text-blue-800 dark:text-blue-400"
+                        >
+                            Details
+                        </button>
+                        <button
+                            onClick={() => deleteMessage(msg._id)}
+                            className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                        >
+                            Delete
+                        </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
+            {/* Modal */}
+            {selectedMessage && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-2xl p-6 relative">
+
+                    {/* Close Button */}
+                    <button
+                        onClick={() => setSelectedMessage(null)}
+                        className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl"
+                    >
+                        ✕
+                    </button>
+
+                    <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+                        Message Details
+                    </h2>
+
+                    <div className="space-y-4">
+
+                        <div>
+                        <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Name:
+                        </span>
+                        <p className="text-gray-900 dark:text-white">
+                            {selectedMessage.name}
+                        </p>
+                        </div>
+
+                        <div>
+                        <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Email:
+                        </span>
+                        <p className="text-gray-900 dark:text-white">
+                            {selectedMessage.email}
+                        </p>
+                        </div>
+
+                        <div>
+                        <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Subject:
+                        </span>
+                        <p className="text-gray-900 dark:text-white">
+                            {selectedMessage.subject}
+                        </p>
+                        </div>
+
+                        <div>
+                        <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Date:
+                        </span>
+                        <p className="text-gray-900 dark:text-white">
+                            {new Date(
+                            selectedMessage.createdAt
+                            ).toLocaleString()}
+                        </p>
+                        </div>
+
+                        <div>
+                        <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Message:
+                        </span>
+
+                        <div className="mt-2 p-4 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white whitespace-pre-wrap">
+                            {selectedMessage.message}
+                        </div>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            )}
           </div>
         )}
       </div>
