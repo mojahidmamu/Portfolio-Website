@@ -110,8 +110,9 @@ const BannerSection = () => {
         </h2>
 
         <p className="max-w-lg mx-auto md:mx-0 text-base sm:text-lg text-slate-600">
-          I build modern, scalable, and user-friendly <br /> web applications
-          with a passion for clean <br /> code and great UX.
+          Aspiring Software Developer with a strong foundation in Full-Stack Web Development and Competitive Programming. <br />
+          I build responsive, scalable, and user-centric applications.  <br />
+          I enjoy solving complex problems, writing clean code, and creating impactful digital experiences through technology.
         </p>
 
         {/* Buttons */}

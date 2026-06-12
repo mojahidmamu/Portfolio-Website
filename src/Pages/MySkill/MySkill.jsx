@@ -18,51 +18,61 @@ import {
 
 import { FaGitAlt, FaFigma } from "react-icons/fa";
 
-const skills = [
-  { name: "HTML5", icon: <SiHtml5 className="text-orange-500 w-12 h-12" /> },
-  { name: "CSS3", icon: <SiCss3 className="text-blue-500 w-12 h-12" /> },
+const skillCategories = [
   {
-    name: "JavaScript",
-    icon: <SiJavascript className="text-yellow-400 w-12 h-12" />,
-  },
-  { name: "React JS", icon: <SiReact className="text-blue-400 w-12 h-12" /> },
-  {
-    name: "Node JS",
-    icon: <SiNodedotjs className="text-green-600 w-12 h-12" />,
-  },
-  { name: "MongoDB", icon: <SiMongodb className="text-green-700 w-12 h-12" /> },
-  { name: "Java", icon: <SiJavascript className="text-red-500 w-12 h-12" /> }, // placeholder
-  {
-    name: "Express.js",
-    icon: <SiExpress className="text-gray-700 w-12 h-12" />,
-  },
-  { name: "Redux", icon: <SiRedux className="text-purple-600 w-12 h-12" /> },
-  {
-    name: "React Router",
-    icon: <SiReact className="text-blue-400 w-12 h-12" />,
+    title: "Programming Languages",
+    skills: [
+      { name: "C" },
+      { name: "C++" },
+      { name: "Java" },
+      { name: "JavaScript" },
+    ],
   },
   {
-    name: "Tailwind CSS",
-    icon: <SiTailwindcss className="text-teal-400 w-12 h-12" />,
+    title: "Markup & Styling",
+    skills: [
+      { name: "HTML5" },
+      { name: "CSS3" },
+      { name: "Tailwind CSS" },
+      { name: "DaisyUI" },
+    ],
   },
   {
-    name: "DaisyUI",
-    icon: <SiTailwindcss className="text-teal-300 w-12 h-12" />,
+    title: "Frontend",
+    skills: [
+      { name: "React JS" },
+      { name: "React Router" },
+      { name: "Redux Toolkit" },
+    ],
   },
   {
-    name: "Firebase",
-    icon: <SiFirebase className="text-yellow-500 w-12 h-12" />,
+    title: "Backend",
+    skills: [
+      { name: "Node.js" },
+      { name: "Express.js" },
+      { name: "REST API" },
+    ],
   },
-  { name: "C", icon: <SiJavascript className="text-blue-700 w-12 h-12" /> },  
-  { name: "C++", icon: <SiJavascript className="text-blue-500 w-12 h-12" /> },
-  { name: "DSA", icon: <SiJavascript className="text-yellow-400 w-12 h-12" /> }, 
-  { name: "Go", icon: <SiGoland className="text-blue-600 w-12 h-12" /> }, 
-  { name: "Git", icon: <FaGitAlt className="text-red-600 w-12 h-12" /> },
-  { name: "GitHub", icon: <SiGithub className="text-gray-900 w-12 h-12" /> },
-  { name: "VS Code", icon: <SiVercel className="text-purple-500 w-12 h-12" /> },
-  { name: "Figma", icon: <FaFigma className="text-pink-500 w-12 h-12" /> },
-  { name: "Vercel", icon: <SiVercel className="text-black w-12 h-12" /> },
-];
+  {
+    title: "Database & Authentication",
+    skills: [
+      { name: "MongoDB" },
+      { name: "Firebase" },
+      { name: "JWT" },
+    ],
+  },
+  {
+    title: "Tools & Platforms",
+    skills: [
+      { name: "Git" },
+      { name: "GitHub" },
+      { name: "VS Code" },
+      { name: "Figma" },
+      { name: "Vercel" },
+      { name: "Render" },
+    ],
+  },
+]; 
 
 const cpProfiles = [
   {
@@ -85,7 +95,7 @@ const MySkill = () => {
       </Helmet>
 
       {/* Header */}
-      <div className="max-w-4xl mx-auto text-center space-y-6 mb-16">
+      <div className="max-w-4xl mx-auto text-center space-y-6 mb-10">
         <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
           <span className="text-slate-900 dark:text-white">My </span>
           <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-teal-400 bg-clip-text text-transparent">
@@ -103,24 +113,35 @@ const MySkill = () => {
         </p>
       </div>
 
-      {/* Skills Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
-        {skills.map((skill, index) => (
+      {/* Skills Categories */}
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+        {skillCategories.map((category, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-lg hover:shadow-purple-500/20 transition transform hover:-translate-y-2"
+            className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-purple-500/20 transition-all duration-300 border border-gray-100 dark:border-gray-700"
           >
-            {skill.icon}
-            <span className="mt-4 font-semibold text-gray-900 dark:text-white text-lg text-center">
-              {skill.name}
-            </span>
+            <h3 className="text-2xl font-bold mb-6 text-center bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent">
+              {category.title}
+            </h3>
+
+            <div className="flex flex-wrap gap-3 justify-center">
+              {category.skills.map((skill, idx) => (
+                <span
+                  key={idx}
+                  className="px-4 py-2 rounded-full bg-purple-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200 border border-purple-200 dark:border-gray-600 font-medium hover:scale-105 transition"
+                >
+                  {skill.name}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </div>
 
 
       {/* Competitive Programming Section */}
-      <div className="max-w-4xl mx-auto mt-20 text-center">
+      <div className="max-w-4xl mx-auto mt-10 text-center">
         <h3 className="text-3xl font-bold mb-6">🏆 Competitive Programming</h3>
 
         <div className="flex flex-wrap justify-center gap-6">

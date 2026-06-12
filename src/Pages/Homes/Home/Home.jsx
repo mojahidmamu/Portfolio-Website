@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import BannerSection from "../../Banner/BannerSection";
 import AboutMe from "../../AboutMe/AboutMe";
 import MySkill from "../../MySkill/MySkill";
-import ClientFeedback from "../../ClientFeedback/ClientFeedback";
+// import ClientFeedback from "../../ClientFeedback/ClientFeedback";
 import Projects from "../../Projects/Projects";
 import Contact from "../../Contact/Contact";
 import BuildTogether from "../../BuildTogether/BuildTogether";
@@ -22,7 +22,7 @@ const Home = () => {
       <MySkill></MySkill>
       <Projects></Projects>
       <Education></Education>
-      <ClientFeedback></ClientFeedback>
+      {/* <ClientFeedback></ClientFeedback> */}
       <FAQ></FAQ>
       <Contact></Contact>
       <BuildTogether></BuildTogether>

@@ -6,14 +6,17 @@ import Profile from "../../assets/home/Profile-image.jpg";
 import myCV from "../../assets/home/Abdullah_Al_Mojahid_Resume.pdf"
 
 const techStack = [
-  "React",
+  "React JS",
   "JavaScript",
   "Node.js",
-  "Express",
+  "Express.js",
   "MongoDB",
-  "Tailwind CSS",
-  "Redux",
   "Firebase",
+  "Redux Toolkit", 
+  "REST API",
+  "JWT Authentication", 
+  "C++",
+  "Problem Solving"
 ];
 
 const AboutMe = () => {
@@ -69,17 +72,16 @@ const AboutMe = () => {
             <div className="h-1 w-28 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500"></div>
 
             <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg">
-              I am a passionate{" "}
+              I am an aspiring{" "}
               <span className="font-bold underline underline-offset-4 decoration-indigo-500/60">
-                Full-Stack Developer
+                Software Developer, Competitive Programmer, and Full-Stack Web Developer
               </span>{" "}
-              dedicated to building modern, scalable and secure web
-              applications.
+              passionate about solving complex problems and building scalable, secure, and impactful digital solutions.
             </p>
           </div>
 
           {/*   Stats Cards  */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
             {[
               {
                 label: "Projects Done",
@@ -119,7 +121,7 @@ const AboutMe = () => {
           </div>
 
           {/* Tech Stack  */}
-          <div className="space-y-4 mb-12">
+          <div className="space-y-3 mb-6">
             <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-indigo-500">
               Technical Prowess
             </h4>

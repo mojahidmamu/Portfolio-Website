@@ -68,7 +68,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left text-gray-500 text-xs gap-2 md:gap-0">
           <p>© {currentYear} Abdullah all Mojahid. All rights reserved.</p>
           <p>
-            Made with ❤️ using{" "}
+            Made with ❤️ BY {" "}
             <span className="font-semibold text-white">Mojahid</span>
           </p>
         </div>
