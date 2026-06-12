@@ -6,7 +6,7 @@
     import "react-vertical-timeline-component/style.min.css";
     import BSPI from "../../assets/Educational Logo/BSPI.png";
     import IJBHS from "../../assets/Educational Logo/IJBHS.jpeg";
-    import Primary_School from "../../assets/Educational Logo/KSMACA.png";
+    // import Primary_School from "../../assets/Educational Logo/KSMACA.png";
 
     const Education = () => {
     return (
@@ -104,38 +104,7 @@
             </ul>
             </VerticalTimelineElement>
 
-            {/* Educational Item 3 */}
-            <VerticalTimelineElement
-            date="2013 - 2017"
-            contentStyle={{ background: "#E3F2FD", color: "#0288D1" }}
-            contentArrowStyle={{ borderRight: "7px solid #0288D1" }}
-            iconStyle={{ background: "#0288D1", color: "#fff" }}
-            icon={
-                <div className="flex justify-center items-center w-full h-full">
-                <img
-                    src="https://img.icons8.com/?size=100&id=RWH5eUW9Vr7f&format=png"
-                    alt="SSC Icon"
-                    className="w-16 h-16 object-contain"
-                />
-                </div>
-            }
-            >
-            <div className="flex items-center gap-2 mb-2">
-                <img src={Primary_School} alt="Primary School Logo" className="w-16 h-16 object-contain" />
-                <h3 className="text-[#3F51B5] text-[20px] font-bold"> Primary School Certificate-[PSC]  </h3>
-            </div>
-            <p className="text-[#01579B] text-[16px] font-semibold mb-4">
-                <span className="font-bold text-xl">School:</span> Khan Shaheb Mokbul Ali Chy. Academy
-            </p>
-            <ul className="list-disc ml-5 space-y-2 mt-2">
-                <li className="text-[#01579B] text-[14px]">
-                GPA: 4.96 / 5.00
-                </li>
-                <li className="text-[#01579B] text-[14px]">
-                Completed in 2017
-                </li>
-            </ul>
-            </VerticalTimelineElement>
+            
         </VerticalTimeline>
 
 
