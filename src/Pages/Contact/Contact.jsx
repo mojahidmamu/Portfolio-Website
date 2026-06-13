@@ -268,26 +268,73 @@ const Contact = () => {
               {loading ? "Sending..." : "Send Me"}
           </button>
           </form>
-
-         {/* Success Message UI */}
+ 
+          {/* Success Message Toast */}
           {sent && (
             <motion.div
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -50, opacity: 0 }}
-              className="fixed top-4 left-1/2 -translate-x-1/2 flex gap-3 p-4 rounded-xl bg-green-50 border border-green-200 shadow-md z-50"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 100 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-4 right-4 left-4 md:left-auto md:w-96 z-50"
             >
-              <CheckCircle className="text-green-600 text-2xl" />
-              <div>
-                <p className="font-semibold text-green-700">
-                  Message sent successfully!
-                </p>
-                <p className="text-sm text-green-600">
-                  Thanks — I’ll reply soon.
-                </p>
+              <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-xl shadow-xl p-4 flex items-start gap-3">
+                <CheckCircle className="text-green-600 text-2xl flex-shrink-0 mt-0.5" />
+
+                <div className="flex-1">
+                  <p className="font-semibold text-green-800 dark:text-green-300">
+                    Message sent successfully!
+                  </p>
+
+                  <p className="text-sm text-green-700 dark:text-green-400">
+                    Thanks for reaching out. I'll get back to you soon.
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setSent(false)}
+                  className="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 transition"
+                >
+                  ✕
+                </button>
               </div>
             </motion.div>
           )}
+
+          {/* Error Toast */}
+          {status.type === "error" && status.message && (
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 100 }}
+              transition={{ duration: 0.3 }}
+              className="fixed top-4 right-4 left-4 md:left-auto md:w-96 z-50"
+            >
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-xl shadow-xl p-4 flex items-start gap-3">
+                <div className="text-red-600 text-xl flex-shrink-0">
+                  ⚠️
+                </div>
+
+                <div className="flex-1">
+                  <p className="font-semibold text-red-800 dark:text-red-300">
+                    Message Failed
+                  </p>
+
+                  <p className="text-sm text-red-700 dark:text-red-400">
+                    {status.message}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setStatus({ type: "", message: "" })}
+                  className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition"
+                >
+                  ✕
+                </button>
+              </div>
+            </motion.div>
+          )}
+          
         </div>
       </div>
     </div>
