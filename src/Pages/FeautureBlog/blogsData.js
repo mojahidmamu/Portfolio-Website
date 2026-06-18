@@ -1,9 +1,8 @@
 import Hackthon from "../../assets/Blog-image/Hackthon.jpeg";
-import Robotics from "../../assets/Blog-image/Robotics.jpeg";
-// import Github from "../../assets/Blog-image/Github.jpg";
+import Robotics from "../../assets/Blog-image/Robotics.jpeg"; 
 import NSDA from "../../assets/Blog-image/NSDA.jpg";
-import CF_IMAGE from "../../assets/Blog-image/CodeForces.jpg";
-import CC_IMAGE from "../../assets/Blog-image/CodeChef.jpg";
+import CF_IMAGE from "../../assets/Blog-image/CodeForces.png";
+import CC_IMAGE from "../../assets/Blog-image/CodeChef.png";
 
 export const blogs = [
   {
@@ -36,14 +35,14 @@ export const blogs = [
   },
   {
     id: 5,
-    title: "Codeforces Achievement | Pupil",
+    title: "Codeforces Achievement | Specialist",
     excerpt:
-      "Achieved Pupil rank on Codeforces, demonstrating strong understanding of data structures, algorithms, and competitive programming fundamentals. Actively participated in contests and improved problem-solving speed and accuracy under time constraints.",
+      "Achieved Specialist rank on Codeforces, demonstrating strong understanding of data structures, algorithms, and competitive programming fundamentals. Actively participated in contests and improved problem-solving speed and accuracy under time constraints.",
     image: CF_IMAGE,
     links: {
       profile: "https://codeforces.com/profile/Abdullah_all_Mojahid",
     },
-    tags: ["Codeforces", "Pupil", "Competitive Programming", "DSA"],
+    tags: ["Codeforces", "Specialist", "Competitive Programming", "DSA"],
   },
   {
     id: 6,

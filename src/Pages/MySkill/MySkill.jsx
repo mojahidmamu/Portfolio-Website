@@ -76,7 +76,7 @@ const skillCategories = [
 
 const cpProfiles = [
   {
-    name: "Codeforces (Pupil)",
+    name: "Codeforces (Specialist)",
     link: "https://codeforces.com/profile/Abdullah_all_Mojahid",
     color: "text-blue-500",
   },
