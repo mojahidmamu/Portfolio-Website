@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle, X } from "lucide-react";
 
 import {
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
   FaLinkedin,
-  FaGithub, 
-  FaFacebook, 
+  FaGithub,
+  FaFacebook,
 } from "react-icons/fa";
-import { SiCodeforces } from "react-icons/si"; // Codeforces icon
+import { SiCodeforces } from "react-icons/si";
 
 const contactItems = [
   {
@@ -58,90 +58,62 @@ const Contact = () => {
     subject: "",
     message: "",
   });
-
   const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [status, setStatus] = useState({ type: "", message: "" });
-  
+  const [toast, setToast] = useState({ visible: false, type: "", message: "" });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
-    setStatus({ type: "", message: "" });
+    setToast({ visible: false, type: "", message: "" });
 
     try {
-      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/contact`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
       const data = await res.json();
 
       if (data.success) {
-        console.log("✅ Submitted Data:", formData);
-
-        // Success Message
-        setStatus({
+        setToast({
+          visible: true,
           type: "success",
-          message: "Message sent successfully!",
+          message: "Message sent successfully! I'll get back to you soon.",
         });
-
-        // Success UI
-        setSent(true);
-
-        // Reset Form
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-
-        // Auto Hide Success UI
+        // Clear form
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        // Auto-hide toast after 5 seconds
         setTimeout(() => {
-          setSent(false);
-
-          setStatus({
-            type: "",
-            message: "",
-          });
-        }, 4000);
+          setToast({ visible: false, type: "", message: "" });
+        }, 5000);
       } else {
-        setStatus({
+        setToast({
+          visible: true,
           type: "error",
-          message:
-            data.message ||
-            "Something went wrong. Please try again.",
+          message: data.message || "Something went wrong. Please try again.",
         });
       }
     } catch (error) {
       console.error(error);
-
-      setStatus({
+      setToast({
+        visible: true,
         type: "error",
-        message:
-          "Network error. Please try again later.",
+        message: "Network error. Please check your connection.",
       });
     } finally {
       setLoading(false);
     }
-};
-
+  };
 
   return (
     <div className="min-h-screen py-20 px-6 md:px-12 lg:px-20 bg-gray-50 dark:bg-gray-900">
       <Helmet>
-        <title>My Portfolio </title>
+        <title>My Portfolio - Contact</title>
       </Helmet>
 
       {/* Flex container */}
@@ -185,20 +157,20 @@ const Contact = () => {
                   <p className="text-xs font-bold uppercase tracking-widest text-slate-500/70">
                     {item.label}
                   </p>
-                    {item.link ? (
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-medium text-slate-800 dark:text-white hover:text-teal-500 transition-colors duration-200"
-                      >
-                        {item.text}
-                      </a>
-                    ) : (
-                      <p className="font-medium text-slate-800 dark:text-white">
-                        {item.text}
-                      </p>
-                    )}
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-slate-800 dark:text-white hover:text-teal-500 transition-colors duration-200"
+                    >
+                      {item.text}
+                    </a>
+                  ) : (
+                    <p className="font-medium text-slate-800 dark:text-white">
+                      {item.text}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -259,84 +231,76 @@ const Contact = () => {
               className="w-full p-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition resize-none"
             />
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}
-              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl shadow-lg transition"
+              className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl shadow-lg transition disabled:opacity-50"
             >
               {loading ? "Sending..." : "Send Me"}
-          </button>
+            </button>
           </form>
- 
-          {/* Success Message Toast */}
-          {sent && (
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 100 }}
-              transition={{ duration: 0.3 }}
-              className="fixed top-4 right-4 left-4 md:left-auto md:w-96 z-50"
-            >
-              <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-xl shadow-xl p-4 flex items-start gap-3">
-                <CheckCircle className="text-green-600 text-2xl flex-shrink-0 mt-0.5" />
-
-                <div className="flex-1">
-                  <p className="font-semibold text-green-800 dark:text-green-300">
-                    Message sent successfully!
-                  </p>
-
-                  <p className="text-sm text-green-700 dark:text-green-400">
-                    Thanks for reaching out. I'll get back to you soon.
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => setSent(false)}
-                  className="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300 transition"
-                >
-                  ✕
-                </button>
-              </div>
-            </motion.div>
-          )}
-
-          {/* Error Toast */}
-          {status.type === "error" && status.message && (
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 100 }}
-              transition={{ duration: 0.3 }}
-              className="fixed top-4 right-4 left-4 md:left-auto md:w-96 z-50"
-            >
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-xl shadow-xl p-4 flex items-start gap-3">
-                <div className="text-red-600 text-xl flex-shrink-0">
-                  ⚠️
-                </div>
-
-                <div className="flex-1">
-                  <p className="font-semibold text-red-800 dark:text-red-300">
-                    Message Failed
-                  </p>
-
-                  <p className="text-sm text-red-700 dark:text-red-400">
-                    {status.message}
-                  </p>
-                </div>
-
-                <button
-                  onClick={() => setStatus({ type: "", message: "" })}
-                  className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 transition"
-                >
-                  ✕
-                </button>
-              </div>
-            </motion.div>
-          )}
-          
         </div>
       </div>
+
+      {/* Toast Notifications */}
+      <AnimatePresence>
+        {toast.visible && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-6 right-6 left-6 md:left-auto md:w-96 z-50"
+          >
+            <div
+              className={`rounded-2xl shadow-2xl p-5 flex items-start gap-4 border ${
+                toast.type === "success"
+                  ? "bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-700"
+                  : "bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-700"
+              }`}
+            >
+              {/* Icon */}
+              <div className="flex-shrink-0 mt-0.5">
+                {toast.type === "success" ? (
+                  <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
+                ) : (
+                  <div className="w-6 h-6 text-red-600 dark:text-red-400 text-xl font-bold">⚠️</div>
+                )}
+              </div>
+
+              {/* Content */}
+              <div className="flex-1">
+                <p
+                  className={`font-semibold ${
+                    toast.type === "success"
+                      ? "text-green-800 dark:text-green-200"
+                      : "text-red-800 dark:text-red-200"
+                  }`}
+                >
+                  {toast.type === "success" ? "Success!" : "Error"}
+                </p>
+                <p
+                  className={`text-sm ${
+                    toast.type === "success"
+                      ? "text-green-700 dark:text-green-300"
+                      : "text-red-700 dark:text-red-300"
+                  }`}
+                >
+                  {toast.message}
+                </p>
+              </div>
+
+              {/* Close button */}
+              <button
+                onClick={() => setToast({ visible: false, type: "", message: "" })}
+                className="flex-shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
