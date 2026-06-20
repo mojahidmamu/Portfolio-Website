@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, X } from "lucide-react";
+import { CheckCircle, X, XCircle } from "lucide-react"; 
 
 import {
   FaPhone,
@@ -65,50 +65,76 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setToast({ visible: false, type: "", message: "" });
+ const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
+  setLoading(true);
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/contact`,
+      {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (data.success) {
-        setToast({
-          visible: true,
-          type: "success",
-          message: "Message sent successfully! I'll get back to you soon.",
-        });
-        // Clear form
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        // Auto-hide toast after 5 seconds
-        setTimeout(() => {
-          setToast({ visible: false, type: "", message: "" });
-        }, 5000);
-      } else {
-        setToast({
-          visible: true,
-          type: "error",
-          message: data.message || "Something went wrong. Please try again.",
-        });
       }
-    } catch (error) {
-      console.error(error);
-      setToast({
-        visible: true,
-        type: "error",
-        message: "Network error. Please check your connection.",
-      });
-    } finally {
-      setLoading(false);
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message);
     }
-  };
+
+    // Clear Form
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+
+    // Success Toast
+    setToast({
+      visible: true,
+      type: "success",
+      title: "Message Sent Successfully",
+      message:
+        "Thanks for contacting me. I'll get back to you soon.",
+    });
+
+    setTimeout(() => {
+      setToast({
+        visible: false,
+        type: "",
+        title: "",
+        message: "",
+      });
+    }, 5000);
+  } catch (error) {
+    setToast({
+      visible: true,
+      type: "error",
+      title: "Message Failed",
+      message:
+        error.message ||
+        "Something went wrong. Please try again.",
+    });
+
+    setTimeout(() => {
+      setToast({
+        visible: false,
+        type: "",
+        title: "",
+        message: "",
+      });
+    }, 5000);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen py-20 px-6 md:px-12 lg:px-20 bg-gray-50 dark:bg-gray-900">
@@ -243,64 +269,62 @@ const Contact = () => {
       </div>
 
       {/* Toast Notifications */}
-      <AnimatePresence>
-        {toast.visible && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-6 right-6 left-6 md:left-auto md:w-96 z-50"
-          >
-            <div
-              className={`rounded-2xl shadow-2xl p-5 flex items-start gap-4 border ${
-                toast.type === "success"
-                  ? "bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-700"
-                  : "bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-700"
-              }`}
-            >
-              {/* Icon */}
-              <div className="flex-shrink-0 mt-0.5">
-                {toast.type === "success" ? (
-                  <CheckCircle className="w-6 h-6 text-green-600 dark:text-green-400" />
-                ) : (
-                  <div className="w-6 h-6 text-red-600 dark:text-red-400 text-xl font-bold">⚠️</div>
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="flex-1">
-                <p
-                  className={`font-semibold ${
-                    toast.type === "success"
-                      ? "text-green-800 dark:text-green-200"
-                      : "text-red-800 dark:text-red-200"
-                  }`}
-                >
-                  {toast.type === "success" ? "Success!" : "Error"}
-                </p>
-                <p
-                  className={`text-sm ${
-                    toast.type === "success"
-                      ? "text-green-700 dark:text-green-300"
-                      : "text-red-700 dark:text-red-300"
-                  }`}
-                >
-                  {toast.message}
-                </p>
-              </div>
-
-              {/* Close button */}
-              <button
-                onClick={() => setToast({ visible: false, type: "", message: "" })}
-                className="flex-shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-          </motion.div>
+      {toast.visible && (
+  <motion.div
+    initial={{ opacity: 0, y: -50 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -50 }}
+    transition={{ duration: 0.3 }}
+    className="fixed top-5 right-5 z-50"
+  >
+    <div
+      className={`w-[350px] rounded-2xl shadow-2xl p-5 border backdrop-blur-lg
+      ${
+        toast.type === "success"
+          ? "bg-green-50 border-green-300"
+          : "bg-red-50 border-red-300"
+      }`}
+    >
+      <div className="flex items-start gap-3">
+        {toast.type === "success" ? (
+          <CheckCircle className="text-green-600 w-7 h-7" />
+        ) : (
+          <XCircle className="text-red-600 w-7 h-7" />
         )}
-      </AnimatePresence>
+
+        <div className="flex-1">
+          <h3
+            className={`font-bold text-lg ${
+              toast.type === "success"
+                ? "text-green-700"
+                : "text-red-700"
+            }`}
+          >
+            {toast.title}
+          </h3>
+
+          <p className="text-sm text-gray-700 mt-1">
+            {toast.message}
+          </p>
+        </div>
+
+        <button
+          onClick={() =>
+            setToast({
+              visible: false,
+              type: "",
+              title: "",
+              message: "",
+            })
+          }
+          className="text-gray-500 hover:text-gray-800"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  </motion.div>
+)}
     </div>
   );
 };
