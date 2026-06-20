@@ -3,6 +3,7 @@ import Robotics from "../../assets/Blog-image/Robotics.jpeg";
 import NSDA from "../../assets/Blog-image/NSDA.jpg";
 import CF_IMAGE from "../../assets/Blog-image/CodeForces.png";
 import CC_IMAGE from "../../assets/Blog-image/CodeChef.png";
+import Orbix from "../../assets/Blog-image/Orbix.jpeg";
 
 export const blogs = [
   {
@@ -19,13 +20,13 @@ export const blogs = [
       "Achieved the title of Robotics Club Champion 2025 at Bangladesh Sweden Polytechnic Institute (BSPI) by securing top position in an inter-institution competition held within our institute. This accomplishment highlights my strong problem-solving skills, technical creativity, and ability to work effectively under competitive pressure. The experience enhanced my teamwork, innovation mindset, and practical understanding of robotics and technology-based solutions.",
     image: Robotics,
   },
-  // {
-  //   id: 3,
-  //   title: "Github commit history in 2025",
-  //   excerpt:
-  //     "In 2025, I maintained strong consistency on GitHub, making 3,500+ code contributions while focusing on daily practice, real-world projects, and strengthening core computer science fundamentals. My activity reflects continuous learning, steady improvement, and growth in web development, Data Structures & Algorithms, and problem-solving. More than numbers, this milestone represents discipline, persistence, and my commitment to becoming a skilled software developer through the mindset of Learn. Build. Improve. Repeat. 🚀",
-  //   image: Github,
-  // },
+  {
+    id: 3,
+    title: "ITBI Student Startup Pitch Fest 2026",
+    excerpt:
+      "Participated in ITBI Student Startup Pitch Fest 2026 at CUET, representing Bangladesh Sweden Polytechnic Institute. Presented 'Orbix', a SaaS-based business operating system designed for SMEs in Bangladesh.  Through this competition, I gained valuable experience in startup ideation, business model development, market validation, public speaking, and startup pitching. The event also provided an excellent opportunity to connect with innovators, entrepreneurs, and industry experts while gaining practical exposure to Bangladesh's growing startup ecosystem.",
+    image: Orbix,
+  },
   {
     id: 4,
     title: "NSDA ITS-RPL-(Level-3) in-2026",
