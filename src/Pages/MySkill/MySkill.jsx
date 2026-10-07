@@ -81,7 +81,7 @@ const cpProfiles = [
     color: "text-blue-500",
   },
   {
-    name: "CodeChef (2★)",
+    name: "CodeChef (3★)",
     link: "https://www.codechef.com/users/mojahidmamu",
     color: "text-yellow-500",
   },

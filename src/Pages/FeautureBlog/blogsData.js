@@ -47,9 +47,9 @@ export const blogs = [
   },
   {
     id: 6,
-    title: "CodeChef Achievement | 2★ Coder",
+    title: "CodeChef Achievement | 3★ Coder",
     excerpt:
-      "Earned 2★ rating on CodeChef through consistent participation in contests and practice problems. Strengthened logical thinking and algorithmic efficiency by solving structured programming challenges.",
+      "Earned 3★ rating on CodeChef through consistent participation in contests and practice problems. Strengthened logical thinking and algorithmic efficiency by solving structured programming challenges.",
     image: CC_IMAGE,
     links: {
       profile: "https://www.codechef.com/users/mojahidmamu",

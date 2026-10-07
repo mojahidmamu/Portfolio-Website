@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import NavLogo from "../../../assets/People/logo.png";
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
+import myCV from "../../../assets/home/Abdullah_Al_Mojahid_Resume.pdf";
 
 const NavBar = () => {
   const [theme, setTheme] = useState("light");
@@ -35,14 +36,6 @@ const NavBar = () => {
           About
         </Link>
       </li>
-      {/* <li>
-        <Link
-          to="/skill"
-          className="hover:text-purple-400 transition-colors duration-200"
-        >
-         Skills
-        </Link>
-      </li> */}
       <li>
         <Link
           to="/projects"
@@ -51,22 +44,7 @@ const NavBar = () => {
           Projects
         </Link>
       </li>
-      {/* <li>
-        <Link
-          to="/education"
-          className="hover:text-purple-400 transition-colors duration-200"
-        >
-          Education
-        </Link>
-      </li> */}
-       {/* <li>
-        <Link
-          to="/blogs"
-          className="hover:text-purple-400 transition-colors duration-200"
-        >
-            Achivements
-        </Link>
-      </li> */}
+
       <li>
         <Link
           to="/contact"
@@ -75,7 +53,14 @@ const NavBar = () => {
           Contact
         </Link>
       </li>
-     
+      <li>
+        <Link
+          to="/blogs"
+          className="hover:text-purple-400 transition-colors duration-200"
+        >
+          Achievements
+        </Link>
+      </li>
     </>
   );
 
@@ -155,10 +140,12 @@ const NavBar = () => {
             Register
           </Link> */}
           <Link
-            to="/blogs"
+            to={myCV}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn btn-accent btn-active rounded-lg font-bold text-white hover:bg-purple-600"
           >
-            Achivements
+            View Resume
           </Link>
         </div>
       </div>
