@@ -1,22 +1,25 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { FaDownload, FaGithub,FaLinkedin,  FaFacebook } from "react-icons/fa";
-import Profile from "../../assets/home/Profile-image.jpg";
+import { FaDownload, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
+import Profile from "../../assets/home/Profile-image.jpeg";
 import myCV from "../../assets/home/Abdullah_Al_Mojahid_Resume.pdf";
 
 const techStack = [
-  "React JS",
+  "MERN",
+  "Next.js",
   "JavaScript",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
+  "TypeScript",
+  "PostgreSQL",
+  "Prisma",
+  "REST APIs",
+  "TanStack Query",
+  "Redux Toolkit",
   "Firebase",
-  "Redux Toolkit", 
-  "REST API",
-  "JWT Authentication", 
+  "JWT",
+  "Postman",
   "C++",
-  "Problem Solving"
+  "Data Structures & Algorithms",
 ];
 
 const AboutMe = () => {
@@ -61,7 +64,7 @@ const AboutMe = () => {
         {/*   RIGHT — CONTENT   */}
         <div className="md:w-7/12 w-full">
           {/* Header */}
-          <div className="space-y-4 mb-10">
+          <div className="space-y-4 mb-4">
             <h2 className="text-4xl md:text-5xl mt-8 font-extrabold">
               <span className="text-slate-900 dark:text-white">About </span>
               <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-teal-400 bg-clip-text text-transparent">
@@ -72,16 +75,20 @@ const AboutMe = () => {
             <div className="h-1 w-28 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500"></div>
 
             <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg">
-              I am an aspiring{" "}
+              I am a{" "}
               <span className="font-bold underline underline-offset-4 decoration-indigo-500/60">
-                Software Developer, Competitive Programmer, and Full-Stack Web Developer
+                Full Stack Web Developer
               </span>{" "}
-              passionate about solving complex problems and building scalable, secure, and impactful digital solutions.
+              specializing in the MERN Stack, with a strong foundation in Data
+              Structures & Algorithms and Competitive Programming. I build
+              secure, scalable, and user-focused web applications while
+              continuously expanding my expertise in Next.js, TypeScript, and
+              modern backend technologies.
             </p>
           </div>
 
           {/*   Stats Cards  */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-2">
             {[
               {
                 label: "Projects Done",
@@ -91,13 +98,13 @@ const AboutMe = () => {
               },
               {
                 label: "Experience",
-                value: "0+ Years",
+                value: "2+ Years",
                 color: "from-green-500/20 to-green-600/5",
                 text: "text-green-600",
               },
               {
                 label: "Happy Clients",
-                value: "0+",
+                value: "4+",
                 color: "from-purple-500/20 to-purple-600/5",
                 text: "text-purple-600",
               },
@@ -123,7 +130,7 @@ const AboutMe = () => {
           {/* Tech Stack  */}
           <div className="space-y-3 mb-6">
             <h4 className="text-sm font-bold uppercase tracking-[0.2em] text-indigo-500">
-              Technical Prowess
+              Tech Stack & Expertise
             </h4>
 
             <div className="flex flex-wrap gap-3">
@@ -187,7 +194,7 @@ const AboutMe = () => {
             >
               <FaLinkedin className="text-xl" /> LinkedIn
             </a>
-             {/* Facebook */}
+            {/* Facebook */}
             <a
               href="https://www.facebook.com/abdullah.all.mojahid.2024"
               target="_blank"

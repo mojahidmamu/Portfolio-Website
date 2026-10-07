@@ -15,16 +15,16 @@ import {
 } from "react-icons/si";
 
 const subtitles = [
-  "a Full Stack Developer |",
-  "a Competitive Programmer |",
-  "a Front End Developer |",
-  "a Web Developer |",
-  "a Problem Solver |",
-  "a React JS Developer |",
-  "a Dedicated Learner |",
+  "a Full Stack Web Developer |",
   "a MERN Stack Developer |",
-  "a Technology Enthusiast |",
-  "a Backend Developer",
+  "a React.js Developer |",
+  "a Next.js Developer |",
+  "a TypeScript Developer |",
+  "a Backend Developer |",
+  "a Competitive Programmer |",
+  "a Problem Solver |",
+  "a Dedicated Learner |",
+  "a Software Engineering Enthusiast",
 ];
 
 const BannerSection = () => {
@@ -110,13 +110,16 @@ const BannerSection = () => {
         </h2>
 
         <p className="max-w-lg mx-auto md:mx-0 text-base sm:text-lg text-slate-600">
-          Aspiring Software Developer with a strong foundation in Full-Stack Web Development and Competitive Programming. <br />
-          I build responsive, scalable, and user-centric applications.  <br />
-          I enjoy solving complex problems, writing clean code, and creating impactful digital experiences through technology.
+          Full Stack Web Developer specializing in the MERN Stack and modern web
+          technologies. <br />
+          I build responsive, scalable, and user-focused applications with
+          clean, maintainable code. <br />
+          Passionate about problem solving, competitive programming, and turning
+          ideas into impactful digital solutions.
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
           <Link
             to="/projects"
             className="bg-indigo-600 text-white px-8 py-3 rounded-full shadow-lg font-semibold hover:scale-105 hover:bg-indigo-700 transition duration-300 text-center"
