@@ -1,22 +1,4 @@
-import React from "react";
 import { Helmet } from "react-helmet-async";
-import {
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiReact,
-  SiNodedotjs,
-  SiMongodb,
-  SiExpress,
-  SiRedux,
-  SiTailwindcss,
-  SiFirebase,
-  SiGoland,
-  SiGithub,
-  SiVercel,
-} from "react-icons/si";
-
-import { FaGitAlt, FaFigma } from "react-icons/fa";
 
 const skillCategories = [
   {
@@ -25,7 +7,10 @@ const skillCategories = [
       { name: "C" },
       { name: "C++" },
       { name: "Java" },
+      { name: "Python" },
       { name: "JavaScript" },
+      { name: "Go" },
+      { name: "TypeScript" },
     ],
   },
   {
@@ -40,39 +25,94 @@ const skillCategories = [
   {
     title: "Frontend",
     skills: [
-      { name: "React JS" },
+      { name: "React.js" },
+      { name: "Next.js" },
       { name: "React Router" },
       { name: "Redux Toolkit" },
+      { name: "TanStack Query" },
+      { name: "Framer Motion" },
     ],
   },
   {
     title: "Backend",
     skills: [
       { name: "Node.js" },
+      { name: "API Integration" },
       { name: "Express.js" },
       { name: "REST API" },
+      { name: "Server-Side Rendering" },
     ],
   },
   {
-    title: "Database & Authentication",
+    title: "Database & ORM",
     skills: [
       { name: "MongoDB" },
-      { name: "Firebase" },
-      { name: "JWT" },
+      { name: "Mongoose" },
+      { name: "PostgreSQL" },
+      { name: "Prisma" },
     ],
   },
   {
-    title: "Tools & Platforms",
+    title: "Authentication & Security",
+    skills: [
+      { name: "Firebase Authentication" },
+      { name: "JWT" },
+      { name: "Auth.js / NextAuth" },
+      { name: "OAuth" },
+      { name: "Role-Based Access Control" },
+    ],
+  },
+  {
+    title: "Tools & Development",
     skills: [
       { name: "Git" },
       { name: "GitHub" },
       { name: "VS Code" },
-      { name: "Figma" },
-      { name: "Vercel" },
-      { name: "Render" },
+      { name: "Postman" },
+      { name: "npm" },
+      { name: "ESLint" },
+      { name: "Prettier" },
     ],
   },
-]; 
+  {
+    title: "DevOps & Deployment",
+    skills: [
+      { name: "Docker" },
+      { name: "Nginx" },
+      { name: "GitHub Actions" },
+      { name: "Vercel" },
+      { name: "Render" },
+      { name: "Netlify" },
+    ],
+  },
+
+  {
+    title: "Cloud & Services",
+    skills: [{ name: "Firebase" }, { name: "Cloudinary" }, { name: "Stripe" }],
+  },
+
+  {
+    title: "Computer Science",
+    skills: [
+      { name: "Data Structures" },
+      { name: "Algorithms" },
+      { name: "Object-Oriented Programming" },
+      { name: "Problem Solving" },
+      { name: "Database Design" },
+      { name: "Software Architecture" },
+    ],
+  },
+
+  {
+    title: "Competitive Programming",
+    skills: [
+      { name: "Codeforces" },
+      { name: "CodeChef" },
+      { name: "Algorithmic Problem Solving" },
+      { name: "C++ DSA" },
+    ],
+  },  
+];
 
 const cpProfiles = [
   {
@@ -89,7 +129,7 @@ const cpProfiles = [
 
 const MySkill = () => {
   return (
-    <div className="py-20 px-6 md:px-12 lg:px-20 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div className="py-12 px-2 md:px-4 lg:px-20 bg-gray-50 dark:bg-gray-900 min-h-screen">
       <Helmet>
         <title>My Portfolio | Skills</title>
       </Helmet>
@@ -114,12 +154,11 @@ const MySkill = () => {
       </div>
 
       {/* Skills Categories */}
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-4">
         {skillCategories.map((category, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-purple-500/20 transition-all duration-300 border border-gray-100 dark:border-gray-700"
+            className="bg-white dark:bg-gray-800 rounded-xl px-4 py-8 shadow-lg hover:shadow-purple-500/20 transition-all duration-300 border border-gray-100 dark:border-gray-700"
           >
             <h3 className="text-2xl font-bold mb-6 text-center bg-gradient-to-r from-purple-500 to-indigo-500 bg-clip-text text-transparent">
               {category.title}
@@ -138,7 +177,6 @@ const MySkill = () => {
           </div>
         ))}
       </div>
-
 
       {/* Competitive Programming Section */}
       <div className="max-w-4xl mx-auto mt-10 text-center">

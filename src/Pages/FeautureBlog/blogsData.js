@@ -54,6 +54,6 @@ export const blogs = [
     links: {
       profile: "https://www.codechef.com/users/mojahidmamu",
     },
-    tags: ["CodeChef", "2 Star", "Problem Solving", "Algorithms"],
+    tags: ["CodeChef", "3 Star", "Problem Solving", "Algorithms"],
   },
 ];

@@ -43,7 +43,7 @@ const contactItems = [
     text: "abdullahallmojahidstudent@gmail.com",
     label: "Email me",
   },
-  { icon: <FaPhone />, text: "+8801844797780", label: "Call me" },
+  { icon: <FaPhone />, text: "+880 1844 797780", label: "Call me" },
   {
     icon: <FaMapMarkerAlt />,
     text: "Cox's Bazar, Bangladesh",
