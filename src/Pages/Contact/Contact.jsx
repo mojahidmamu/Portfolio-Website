@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, X, XCircle } from "lucide-react";
+import { CheckCircle, XCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 import {
   FaPhone,
@@ -59,7 +60,12 @@ const Contact = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState({ visible: false, type: "", message: "" });
+  const [toast, setToast] = useState({
+    visible: false,
+    type: "",
+    title: "",
+    message: "",
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -67,66 +73,49 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      // Send via EmailJS — no backend needed
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: "abdullahallmojahidstudent@gmail.com",
         },
-        body: JSON.stringify(formData),
-      });
+        {
+          publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+        }
+      );
 
-      const data = await response.json();
+      // Clear form
+      setFormData({ name: "", email: "", subject: "", message: "" });
 
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-
-      // Clear Form
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-
-      // Success Toast
+      // Success toast
       setToast({
         visible: true,
         type: "success",
         title: "Message Sent Successfully",
         message: "Thanks for contacting me. I'll get back to you soon.",
       });
-
-      setTimeout(() => {
-        setToast({
-          visible: false,
-          type: "",
-          title: "",
-          message: "",
-        });
-      }, 5000);
     } catch (error) {
+      console.error("EmailJS error:", error);
       setToast({
         visible: true,
         type: "error",
         title: "Message Failed",
-        message: error.message || "Something went wrong. Please try again.",
+        message:
+          error?.text || error?.message || "Something went wrong. Please try again.",
       });
-
-      setTimeout(() => {
-        setToast({
-          visible: false,
-          type: "",
-          title: "",
-          message: "",
-        });
-      }, 5000);
     } finally {
       setLoading(false);
+      setTimeout(() => {
+        setToast({ visible: false, type: "", title: "", message: "" });
+      }, 5000);
     }
   };
 
@@ -136,7 +125,6 @@ const Contact = () => {
         <title>My Portfolio - Contact</title>
       </Helmet>
 
-      {/* Flex container */}
       <div className="flex flex-col md:flex-row md:items-start gap-12">
         {/* Left - Header / Text */}
         <div className="md:w-1/2 flex flex-col justify-center space-y-4">
@@ -149,33 +137,30 @@ const Contact = () => {
             </span>
           </h2>
 
-          {/* Underline */}
           <div className="flex justify-center md:justify-start">
             <span className="h-1 w-28 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500"></span>
           </div>
 
-          <p className="text-slate-500 text-base md:text-lg  text-center md:text-left mt-8">
+          <p className="text-slate-500 text-base md:text-lg text-center md:text-left mt-8">
             I build modern full-stack applications with MERN, Next.js and
             TypeScript focusing on clean code, responsive UI, and reliable
             backend solutions. Whether you have a project in mind or simply want
-            to connect, feel free to reach out! <span className="font-bold">Let’s talk! </span>
+            to connect, feel free to reach out!{" "}
+            <span className="font-bold">Let's talk! </span>
           </p>
 
-          {/* Contact List */}
           <div className="space-y-4">
             {contactItems.map((item, index) => (
               <div key={index} className="flex items-center gap-4 group mt-4">
-                {/* Icon Box */}
                 <div
                   className="w-12 h-12 mt-3 flex items-center justify-center rounded-2xl 
-            bg-teal-500/10 text-teal-500
-            group-hover:bg-teal-500 group-hover:text-white
-            transition-all duration-300"
+                    bg-teal-500/10 text-teal-500
+                    group-hover:bg-teal-500 group-hover:text-white
+                    transition-all duration-300"
                 >
                   {item.icon}
                 </div>
 
-                {/* Text */}
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-slate-500/70">
                     {item.label}
@@ -206,7 +191,6 @@ const Contact = () => {
             onSubmit={handleSubmit}
             className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12 flex flex-col gap-6"
           >
-            {/* Name */}
             <h5 className="font-bold mb-[-20px]">Name</h5>
             <input
               type="text"
@@ -218,7 +202,6 @@ const Contact = () => {
               className="w-full p-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
             />
 
-            {/* Email */}
             <h5 className="font-bold mb-[-20px]">Email Address</h5>
             <input
               type="email"
@@ -230,7 +213,6 @@ const Contact = () => {
               className="w-full p-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
             />
 
-            {/* Subject */}
             <h5 className="font-bold mb-[-20px]">Subject</h5>
             <input
               type="text"
@@ -242,7 +224,6 @@ const Contact = () => {
               className="w-full p-4 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
             />
 
-            {/* Message */}
             <h5 className="font-bold mb-[-20px]">Your Message</h5>
             <textarea
               name="message"
@@ -266,58 +247,61 @@ const Contact = () => {
       </div>
 
       {/* Toast Notifications */}
-      {toast.visible && (
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.3 }}
-          className="fixed top-5 right-5 z-50"
-        >
-          <div
-            className={`w-[350px] rounded-2xl shadow-2xl p-5 border backdrop-blur-lg
-      ${
-        toast.type === "success"
-          ? "bg-green-50 border-green-300"
-          : "bg-red-50 border-red-300"
-      }`}
+      <AnimatePresence>
+        {toast.visible && (
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{ duration: 0.3 }}
+            className="fixed top-5 right-5 z-50"
           >
-            <div className="flex items-start gap-3">
-              {toast.type === "success" ? (
-                <CheckCircle className="text-green-600 w-7 h-7" />
-              ) : (
-                <XCircle className="text-red-600 w-7 h-7" />
-              )}
+            <div
+              className={`w-[350px] rounded-2xl shadow-2xl p-5 border backdrop-blur-lg ${
+                toast.type === "success"
+                  ? "bg-green-50 border-green-300"
+                  : "bg-red-50 border-red-300"
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                {toast.type === "success" ? (
+                  <CheckCircle className="text-green-600 w-7 h-7" />
+                ) : (
+                  <XCircle className="text-red-600 w-7 h-7" />
+                )}
 
-              <div className="flex-1">
-                <h3
-                  className={`font-bold text-lg ${
-                    toast.type === "success" ? "text-green-700" : "text-red-700"
-                  }`}
+                <div className="flex-1">
+                  <h3
+                    className={`font-bold text-lg ${
+                      toast.type === "success"
+                        ? "text-green-700"
+                        : "text-red-700"
+                    }`}
+                  >
+                    {toast.title}
+                  </h3>
+
+                  <p className="text-sm text-gray-700 mt-1">{toast.message}</p>
+                </div>
+
+                <button
+                  onClick={() =>
+                    setToast({
+                      visible: false,
+                      type: "",
+                      title: "",
+                      message: "",
+                    })
+                  }
+                  className="text-gray-500 hover:text-gray-800"
                 >
-                  {toast.title}
-                </h3>
-
-                <p className="text-sm text-gray-700 mt-1">{toast.message}</p>
+                  ✕
+                </button>
               </div>
-
-              <button
-                onClick={() =>
-                  setToast({
-                    visible: false,
-                    type: "",
-                    title: "",
-                    message: "",
-                  })
-                }
-                className="text-gray-500 hover:text-gray-800"
-              >
-                ✕
-              </button>
             </div>
-          </div>
-        </motion.div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
