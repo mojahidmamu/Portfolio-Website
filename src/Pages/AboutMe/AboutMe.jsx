@@ -163,7 +163,7 @@ const AboutMe = () => {
   shadow-lg hover:shadow-purple-500/40
   hover:-translate-y-1 transition-all duration-300"
             >
-              <FaDownload /> Download CV
+              <FaDownload /> Download Resume
             </a>
 
             {/* Github */}
@@ -199,9 +199,9 @@ const AboutMe = () => {
               href="https://www.facebook.com/abdullah.all.mojahid.2024"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 
+              className="flex items-center gap-1
                 bg-blue-600 text-white
-                px-8 py-4 rounded-full font-semibold
+                px-4 py-2 rounded-full font-semibold
                 hover:bg-blue-700 hover:-translate-y-1
                 transition-all duration-300"
             >
