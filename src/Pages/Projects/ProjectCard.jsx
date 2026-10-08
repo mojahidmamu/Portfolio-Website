@@ -38,48 +38,83 @@ const ProjectCard = ({ project }) => {
           ))}
         </div>
 
-        <div className="flex items-center gap-3 pt-4">
+        <div className="flex items-center gap-1 pt-4 flex-nowrap">
           {/* Live Demo */}
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-      flex-1 flex items-center justify-center gap-2
-      bg-gradient-to-r from-emerald-500 to-teal-500
-      hover:from-emerald-600 hover:to-teal-600
-      text-white py-2.5 rounded-xl
-      text-sm font-semibold
-      shadow-md hover:shadow-lg
-      transition-all duration-300
-      hover:-translate-y-0.5
-    "
-          >
-            <ExternalLink size={18} />
-            Live Demo
-          </a>
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+        flex-1 flex items-center justify-center gap-1
+        bg-gradient-to-r from-emerald-500 to-teal-500
+        hover:from-emerald-600 hover:to-teal-600
+        text-white py-2.5 rounded-xl
+        text-sm font-semibold
+        shadow-md hover:shadow-lg
+        transition-all duration-300
+        hover:-translate-y-0.5
+        whitespace-nowrap
+      "
+            >
+              <ExternalLink size={18} />
+              Live Demo
+            </a>
+          )}
 
-          {/* GitHub Code */}
-          <a
-            href={project.code}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="View Source Code"
-            className="
-      flex items-center justify-center
-      w-11 h-11
-      rounded-xl
-      border border-gray-200 dark:border-gray-700
-      bg-white dark:bg-gray-800
-      hover:bg-gray-900 hover:text-white
-      dark:hover:bg-white dark:hover:text-black
-      shadow-sm hover:shadow-md
-      transition-all duration-300
-      hover:-translate-y-0.5
-    "
-          >
-            <Github size={20} />
-          </a>
+          {/* Frontend Code */}
+          {project.frontend && (
+            <a
+              href={project.frontend}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View Frontend Source Code"
+              className="
+        flex-1 flex items-center justify-center gap-1
+        py-2.5 rounded-xl
+        text-sm font-semibold
+        border border-gray-200 dark:border-gray-700
+        bg-white dark:bg-gray-800
+        text-gray-700 dark:text-gray-200
+        hover:bg-gray-900 hover:text-white
+        dark:hover:bg-white dark:hover:text-black
+        shadow-sm hover:shadow-md
+        transition-all duration-300
+        hover:-translate-y-0.5
+        whitespace-nowrap
+      "
+            >
+              <Github size={18} />
+              Frontend
+            </a>
+          )}
+
+          {/* Backend Code */}
+          {project.backend && (
+            <a
+              href={project.backend}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View Backend Source Code"
+              className="
+        flex-1 flex items-center justify-center gap-1
+        py-2.5 rounded-xl
+        text-sm font-semibold
+        border border-gray-200 dark:border-gray-700
+        bg-white dark:bg-gray-800
+        text-gray-700 dark:text-gray-200
+        hover:bg-gray-900 hover:text-white
+        dark:hover:bg-white dark:hover:text-black
+        shadow-sm hover:shadow-md
+        transition-all duration-300
+        hover:-translate-y-0.5
+        whitespace-nowrap
+      "
+            >
+              <Github size={18} />
+              Backend
+            </a>
+          )}
         </div>
       </div>
     </div>
